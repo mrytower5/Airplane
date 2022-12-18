@@ -7,5 +7,5 @@ resources:
     port: "5432"
     ssl: disable
     username: postgres
-    password: Test#123!?@1
+    password: DXt1nKEAod3ALBZL
     database: postgres
