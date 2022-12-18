@@ -8,7 +8,9 @@ import {
   Card,
   useComponentState,
   Dialog,
+  useTaskQuery,
 } from "@airplane/views";
+import { render } from "react-dom";
 
 const Dashboard = () => {
   const searchKeyword = useComponentState("searchKeyword");
@@ -29,6 +31,7 @@ const Dashboard = () => {
           task={{
             slug: "get_comments",
             params: { search_keyword: searchKeyword.value },
+            refetchInterval: 4000
           }}
           rowSelection="single"
           hiddenColumns={[]}
@@ -46,7 +49,8 @@ const Dashboard = () => {
 };
 
 const CustomerCard = ({ selectedCustomer, searchKeyword }) => {
-  const { close } = useComponentState();
+  const { close } = useComponentState("customers");
+  // const { output, refetch } = useTaskQuery({ slug: "comments"}); 
 
   return (
     <Card>
@@ -62,17 +66,21 @@ const CustomerCard = ({ selectedCustomer, searchKeyword }) => {
         <Button  
             color="green"
             id="Approved"
-            task={{
+            task={{ 
               slug: "update_status",
               params: {
                 customer_id: selectedCustomer.customer_id,
                 status: selectedCustomer.status,
               },
+              
               refetchTasks: {
-                slug: "comments"
-              },
-              onSuccess: (close),
+                slug: "comments", 
+                params: { search_keyword: searchKeyword.value },
+              }, 
+              
+              onSuccess: close,
             }}
+            
             > APPROVE
           </Button>
           <Button
@@ -85,10 +93,12 @@ const CustomerCard = ({ selectedCustomer, searchKeyword }) => {
                 status: selectedCustomer.status,
               },
               refetchTasks: {
-                slug: "comments"
+                slug: "comments", 
+                params: { search_keyword: searchKeyword.value },
               },
-              // onSuccess: close,
+              onSuccess: close, 
             }}
+            
           > REJECT
           </Button>
         </Stack>
