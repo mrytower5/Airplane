@@ -7,5 +7,10 @@ resources:
     port: "5432"
     ssl: disable
     username: postgres
+<<<<<<< HEAD
     password: DXt1nKEAod3ALBZL
     database: postgres
+=======
+    password: Test#123!?@1
+    database: postgres
+>>>>>>> 7d7ec00 (Changed data type from shorttext to integer)
