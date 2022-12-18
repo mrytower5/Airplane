@@ -1,0 +1,11 @@
+# airplane.dev.yaml
+resources:
+  - slug: tower
+    name: Tower
+    kind: postgres
+    host: db.amjjcaaslidcwneeqqnx.supabase.co
+    port: "5432"
+    ssl: disable
+    username: postgres
+    password: Sonofdane#5
+    database: postgres
