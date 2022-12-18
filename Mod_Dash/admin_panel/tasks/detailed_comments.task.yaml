@@ -4,10 +4,9 @@ description: "Task to grab view for detailed list of comments"
 parameters:
   - slug: customer_id
     name: Customer ID
-    type: shorttext
+    type: integer
     required: true
 sql:
-  # Replace with your own DB name
   resource: tower
   entrypoint: detailed_comments.sql
   queryArgs:
